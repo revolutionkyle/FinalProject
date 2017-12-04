@@ -10,22 +10,24 @@
 
 bool playagain();
 std::string getword(int,std::string);
-std::string difficulty(int&);
+std::string difficulty();
 encrypt encryptedword;
-
+bool testequivalence(char,char);
+void numtries(std::string, int&);
 const int EASYMODESIZE = 67;
 const int HARDMODESIZE = 19; //subject to change sizes of the files to draw the encryption from.
 int main()
 { std::string word;
   std::vector<char> tempword;
   std::string newword;
-  int numtries;
+  int tries;
   do{ 
   std::srand( time(NULL) );
   int randomNumber;
   randomNumber = std::rand() % 26;
   int randomNumber2 = std::rand();  
-  std::string diff = difficulty(numtries);
+  std::string diff = difficulty();
+  numtries(diff,tries);
 
   if(diff == "easy.txt")
   {
@@ -39,15 +41,37 @@ int main()
   word = getword(randomNumber2,diff);
   tempword = encryptedword.encryptword(word,randomNumber);
   std::string newword(tempword.begin(),tempword.end());
+  int iterator=0;
   std::cout<<newword<<std::endl;
+  while(iterator<tries)
+  { std::string attempt;
+    std::cout<<"What do you think this word is?"<<std::endl;
+    std::cin>>attempt;
+    if(attempt!=word)
+    {
+    for(int i=0; i<word.length();i++)
+    {
+        bool encrypt = testequivalence(attempt[i],word[i]);
+        if(encrypt == true)
+        {
+            std::cout<<attempt[i]<<" was a correct decryption for " <<newword[i] <<"." <<std::endl;
+        }
+
+    }
+    iterator++;
+    }
+    if(attempt == word)
+    {
+    std::cout<<"Congratulations you decrypted " << newword << " as " << word << std::endl;
+    break;
+    }
+  }
+  if(iterator==tries)
+  {
+    std::cout<< "DOH! your word was " << word << std::endl;
+  }
+  
   }while(playagain());
-
-
-
-
-
-
-
 
 return 0;
 }
@@ -65,7 +89,7 @@ bool playagain()
     return false;
   }
 }
-std::string difficulty(int& a)
+std::string difficulty()
 { char diff;
   char restart;
     std::cout<<"Would you like to play easy or hard mode?(E-Easy and you get 5 tries ,H-Hard and you get 3 tries)" << std::endl;
@@ -76,12 +100,10 @@ std::string difficulty(int& a)
         if(diff=='E'||diff=='e')
         {
             return "easy.txt";
-            a=5;
         }
         else if(diff=='H'||diff=='h')
         {
             return "hard.txt";
-            a=3;
         }
         else
         {
@@ -111,4 +133,26 @@ std::string getword(int a,std::string filename)
    return "ISAIDTOGIVEMEAVALIDFILE";
   }
   file.close();  
+}
+bool testequivalence(char a, char b)
+{
+    if(a == b)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+void numtries(std::string word,int& a)
+{
+    if(word=="easy.txt")
+    {
+        a=5;
+    }
+    if(word=="hard.txt")
+    {
+        a=3;
+    }
 }
