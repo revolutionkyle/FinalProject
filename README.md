@@ -8,7 +8,7 @@ In [main.cpp lines 32-39,83-90,100-112,122-134](/main.cpp) I used many important
 ## Iteration
 In [main.cpp lines 46-72,52-58,98-114,124-128,](/main.cpp) and in [encrypt.cpp lines 6-9](encrypt.cpp) I used all 3 main types of loops. I used a while loop for the whole game to ask the user if they would want to play again, and also used it for the number of tries a person got. I used for loops to loop through my random string, to encrypt the word that is seen when playing the game.
 ## Data Structures
-In [main.cpp lines 52-62](/main.cpp) and [encrypt.cpp line 5](/encrypt.cpp) I use vectors of charachters to loop through and store the shifted letter that is outupt to the screen. I ultimately use these just as a letter storage system to loop through and keep track of what is happening to each letter as I am encrypting it.
+In [main.cpp lines 52-62](/main.cpp) and [encrypt.cpp line 5](/encrypt.cpp) I use vectors of characters to loop through and store the shifted letter that is outupt to the screen. I ultimately use these just as a letter storage system to loop through and keep track of what is happening to each letter as I am encrypting it.
 ## Function
 in [main.cpp lines 12-16,78-158](/main.cpp) and [encrypt.cpp lines 4-11](/encrypt.cpp) I have 6 functions, 5 in int main and 1 in my encrypt class I made. These functions have a mixed range of return types like void, bool, std::string, and std::vector<char>. I use mostly pass by value but in the function numtries, which sets the number of attempts the user gets, I pass by reference an integer that becomes my comparison for my loop that gets the users attempt.
 ## FileIO
