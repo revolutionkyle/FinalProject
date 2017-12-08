@@ -92,7 +92,7 @@ bool playagain()
 std::string difficulty()
 { char diff;
   char restart;
-    std::cout<<"Would you like to play easy or hard mode?(E-Easy and you get 7 tries ,H-Hard and you get 5 tries)" << std::endl;
+    std::cout<<"Would you like to play easy or hard mode?(E-Easy and you get 7 tries, H-Hard and you get 5 tries)" << std::endl;
     std::cin>>diff;
     restart = 'Y';
     while(restart=='Y')
